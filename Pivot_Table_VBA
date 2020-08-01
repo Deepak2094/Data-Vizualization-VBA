@@ -1,0 +1,55 @@
+VBA
+
+'Name of the Macro assigned to Scrollbar
+
+Sub ScrollBar1_Change()
+
+ 'Activates the required worksheet
+
+'Then does a Vlookup for the Slider output
+value in the Table array mentioned
+
+'The Result is then stored as an integer
+
+Dim result As Integer
+
+Dim sheet As Worksheet
+
+Set sheet = ActiveWorkbook.Sheets("BadC_Milestone")
+
+result =
+Application.WorksheetFunction.VLookup(sheet.Range("$O$26"),
+sheet.Range("$M$26:$N$53"), 2, False)
+
+
+ 'Assigning variable names to Pivot table and
+field
+
+Dim pt As PivotTable
+
+Dim Field As PivotField
+
+
+ 'Enter the worksheet name, Pivot Table name and
+Pivot Field name
+
+'Next enter the cell in the pivot table whose
+value should be changed dynamically
+
+Set pt = Worksheets ("BadC_Milestone").PivotTables
+("BadC_Table")
+
+Set Field = pt.PivotFields ("DaysTo_BadC")
+
+NewCat = Worksheets ("BadC_Milestone").Range("C1").Value
+
+'This updates and refreshes the PIVOT table
+every time 
+
+With pt
+Field.ClearAllFilters
+Field.CurrentPage = result
+pt.RefreshTable
+
+End With
+End Sub 
